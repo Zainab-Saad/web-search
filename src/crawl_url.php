@@ -1,17 +1,16 @@
 <?php
-require_once __DIR__."\logger.php";
 function crawl_url($url, $depth = 2): void
 {
 	static $queue = array();
 
 	if (isset($queue[$url])) {
-			warning_log("URL already crawled - URL: " . $url . " (Depth: " . $depth . ")");
-			return;
+		warning_log("URL already crawled - URL: " . $url . " (Depth: " . $depth . ")");
+		return;
 	}
 
 	if ($depth === 0) {
-			warning_log("Max depth - URL: " . $url . " (Depth: " . $depth . ")");
-			return;
+		warning_log("Max depth - URL: " . $url . " (Depth: " . $depth . ")");
+		return;
 	}
 
 	$queue[$url] = true;
@@ -28,24 +27,22 @@ function crawl_url($url, $depth = 2): void
 
 	// parse the html response
 	if (!empty($result)) {
-			$dom = new DOMDocument("1.0");
-			@$dom->loadHTML($result);
-			// uncomment below two lines for debugging
-			// $html = $dom->saveHTML();
-			// echo "\nThe content is ".$html;
+		$dom = new DOMDocument("1.0");
+		@$dom->loadHTML($result);
+		// uncomment below two lines for debugging
+		// $html = $dom->saveHTML();
+		// echo "\nThe content is ".$html;
 
-			$anchors = $dom->getElementsByTagName("a");
+		$anchors = $dom->getElementsByTagName("a");
 
-			foreach ($anchors as $anchor) {
-					$href = $anchor->getAttribute("href");
-					if (str_starts_with($href, "#") || str_starts_with($href, "/")) {
-							$href = $url . $href;
-					}
-					crawl_url($href, $depth - 1);
-			}
+		foreach ($anchors as $anchor) {
+				$href = $anchor->getAttribute("href");
+				if (str_starts_with($href, "#") || str_starts_with($href, "/")) {
+						$href = $url . $href;
+				}
+				crawl_url($href, $depth - 1);
+		}
 	} else {
-			err_log("Invalid URL - Tried Crawling: " . $url . " (Depth: " . $depth . ")");
+		err_log("Invalid URL - Tried Crawling: " . $url . " (Depth: " . $depth . ")");
 	}
-
-	return;
 }

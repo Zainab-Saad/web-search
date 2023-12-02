@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&family=Ubuntu&display=swap");
+
+body {
+  text-align: center;
+  margin: 5% 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.input-field {
+  display: block;
+  width: 50%;
+  height: 40px;
+  border-radius: 50px;
+  padding: 1%;
+  font-size: 1.5rem;
+  margin: 3% auto;
+  border: 1px solid black;
+}
+
+.btn {
+  background-color: cadetblue;
+  border: none;
+  border-radius: 20px;
+  width: 15%;
+  height: 40px;
+  font-size: 1.5rem;
+}
+
+.btn:hover {
+  transform: scale(1.1, 1.1);
+}
