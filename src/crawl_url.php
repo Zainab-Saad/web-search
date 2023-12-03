@@ -33,6 +33,13 @@ function crawl_url(Database $database, $url, $depth = 2): void
 		// $html = $dom->saveHTML();
 		// echo "\nThe content is ".$html;
 
+		$titleElement = $dom->getElementsByTagName('title')->item(0);
+
+		$title = "";
+		if ($titleElement) {
+			$title = $titleElement->textContent;
+		}
+
 		// get the actual text content
 		// Create a DOMXPath object for querying
     $xpath = new DOMXPath($dom);
@@ -60,13 +67,16 @@ function crawl_url(Database $database, $url, $depth = 2): void
 		$content = iconv("UTF-8", "UTF-8//IGNORE", $content);
 
 		// save the content in database
-		$database->insert_row($url, $content);
+		$database->insert_row($url, $content, $title);
 
 		$anchors = $dom->getElementsByTagName("a");
 
 		foreach ($anchors as $anchor) {
 				$href = $anchor->getAttribute("href");
 				if (str_starts_with($href, "#") || str_starts_with($href, "/")) {
+						if (isset($queue[$url])) {
+							continue;
+						}
 						$href = $url . $href;
 				}
 				crawl_url($database, $href, $depth - 1);

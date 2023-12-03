@@ -32,8 +32,53 @@ h2 {
   width: 15%;
   height: 40px;
   font-size: 1.5rem;
+  margin-bottom: 1%;
 }
 
-.btn:hover {
+.btn-square {
+  background-color: cadetblue;
+  border: none;
+  border-radius: 2px;
+  width: 20%;
+  height: 40px;
+  font-size: 1.5rem;
+  margin-bottom: 1%;
+}
+
+.btn:hover, .btn-square:hover {
   transform: scale(1.1, 1.1);
+}
+
+.btn-square a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.left-aligned {
+  text-align: left;
+  margin: 2%;
+}
+
+.right-aligned {
+  text-align: right;
+  margin: 2%;
+}
+
+@media screen and (max-width : 1100px) {
+  .btn {
+    width: 35%;
+    font-size: 1rem;
+  }
+
+  .btn-square {
+    font-size: 1rem;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width : 576px) {
+  .input-field {
+    width: 75%;
+    font-size: 1rem;
+  }
 }
