@@ -1,4 +1,6 @@
 <?php
+
+require_once dirname(__DIR__).'\src\robot_compliance.php';
 function crawl_url(Database $database, $url, $depth = 2): void
 {
 	static $queue = array();
@@ -13,9 +15,16 @@ function crawl_url(Database $database, $url, $depth = 2): void
 		return;
 	}
 
+	if (!check_robot_compliance($url)) {
+		echo "<h3>Crawling this URL - ".$url." is not allowed";
+		warning_log("Crawling at " . $url . " (Depth: " . $depth . ") is disallowed");
+		return;
+	}
+
 	$queue[$url] = true;
 
 	info_log("Crawling: " . $url . " (Depth: " . $depth . ")");
+
 
 	// request the resource on the url
 	$ch = curl_init();

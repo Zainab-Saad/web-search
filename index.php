@@ -15,7 +15,7 @@
   <h2>Web Crawler</h2>
   <form action="#" method="POST">
     <label for="url" class="form-label">Enter a seed url</label>
-    <input type="text" placeholder="URL e.g; www.google.com" name="url" class="input-field">
+    <input type="text" placeholder="URL e.g; www.google.com" name="url" class="input-field" value="<?php echo isset($_POST["url"]) ? $_POST["url"]: "" ?>">
     <button type="submit" class="btn">Start Crawling</button>
   </form>
 

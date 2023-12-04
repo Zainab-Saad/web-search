@@ -7,7 +7,7 @@
 <h2>Search Engine</h2>
 <form action="#" method="GET">
   <label for="search_string" class="form-label">Enter a search pattern</label>
-  <input type="text" placeholder="Search...." name="search_string" class="input-field">
+  <input type="text" placeholder="Search...." name="search_string" class="input-field" value="<?php echo isset($_GET["search_string"]) ? $_GET["search_string"]: "" ?>">
   <button type="submit" class="btn">Start Searching</button>
 </form>
 <?php
