@@ -9,6 +9,9 @@ The web crawler systematically explores the internet and collects information fr
 ### Search Engine
 The search engine locates web pages containing information specified by the user's query.
 
+### Ethical Web Crawling
+Adheres to ethical web programming practices by crawling only URLs permitted in the robots.txt file.
+
 ## Technologies/Tools
 - HTML5
 - CSS3
@@ -19,6 +22,7 @@ The search engine locates web pages containing information specified by the user
 ## Implementation Details
 - Web Crawler starts with a seed URL
 - A queue is maintained to keep track of which URLs have been crawled and thus prevents requesting the same URLs
+- For each URL, it is checked based on a user-defined function whether the `robots.txt` file in the root directory of the website allows crawling the URL or not.
 - **cURL** - stands for 'Client for URLs', a command line tool for sending or receiving files using URLs over HTTP/s or FTP.
 - **DomDocument** utility is used to parse the HTML document, extract the links 
 - Crawler then recursively takes each of these URLs and repeats the same process for each URL till a certain **depth**
